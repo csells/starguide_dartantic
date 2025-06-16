@@ -8,14 +8,16 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 
+import 'package:serverpod/protocol.dart' as _i2;
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import 'package:serverpod/protocol.dart' as _i2;
+
 import 'chat_message.dart' as _i3;
 import 'chat_message_type.dart' as _i4;
 import 'chat_session.dart' as _i5;
 import 'rag_document.dart' as _i6;
 import 'recaptcha/recaptcha_exception.dart' as _i7;
+
 export 'chat_message.dart';
 export 'chat_message_type.dart';
 export 'chat_session.dart';
@@ -147,8 +149,8 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'embedding',
           columnType: _i2.ColumnType.vector,
           isNullable: false,
-          dartType: 'Vector(1536)',
-          vectorDimension: 1536,
+          dartType: 'Vector(768)',
+          vectorDimension: 768,
         ),
         _i2.ColumnDefinition(
           name: 'fetchTime',

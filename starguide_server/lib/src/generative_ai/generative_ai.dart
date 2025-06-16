@@ -56,7 +56,15 @@ class GenerativeAi {
   }
 
   Agent _getAgent([String? systemPrompt]) => Agent.provider(
-    GeminiProvider(apiKey: _geminiAPIKey),
+    // pick a specific provider and embedding model -- embeddings aren't
+    // compatible between providers and not guaranteed to be compatible between
+    // models. picking a specific model name isn't as important -- those can
+    // change over time w/o affecting the embeddings.
+    GeminiProvider(
+      apiKey: _geminiAPIKey,
+      modelName: 'gemini-2.0-flash',
+      embeddingModelName: 'text-embedding-004',
+    ),
     systemPrompt: systemPrompt,
   );
 }

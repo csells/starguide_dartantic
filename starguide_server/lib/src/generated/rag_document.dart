@@ -175,7 +175,7 @@ class _RAGDocumentImpl extends RAGDocument {
 
 class RAGDocumentTable extends _i1.Table<int?> {
   RAGDocumentTable({super.tableRelation}) : super(tableName: 'rag_document') {
-    embedding = _i1.ColumnVector('embedding', this, dimension: 1536);
+    embedding = _i1.ColumnVector('embedding', this, dimension: 768);
     fetchTime = _i1.ColumnDateTime('fetchTime', this);
     sourceUrl = _i1.ColumnUri('sourceUrl', this);
     content = _i1.ColumnString('content', this);
