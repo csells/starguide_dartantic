@@ -110,18 +110,12 @@ class _InternalTestEndpoints extends TestEndpoints
     _i2.SerializationManager serializationManager,
     _i2.EndpointDispatch endpoints,
   ) {
-    starguide = _StarguideEndpoint(
-      endpoints,
-      serializationManager,
-    );
+    starguide = _StarguideEndpoint(endpoints, serializationManager);
   }
 }
 
 class _StarguideEndpoint {
-  _StarguideEndpoint(
-    this._endpointDispatch,
-    this._serializationManager,
-  );
+  _StarguideEndpoint(this._endpointDispatch, this._serializationManager);
 
   final _i2.EndpointDispatch _endpointDispatch;
 
@@ -134,9 +128,9 @@ class _StarguideEndpoint {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-        endpoint: 'starguide',
-        method: 'createChatSession',
-      );
+            endpoint: 'starguide',
+            method: 'createChatSession',
+          );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
@@ -145,10 +139,12 @@ class _StarguideEndpoint {
           parameters: _i1.testObjectToJson({'reCaptchaToken': reCaptchaToken}),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue = await (_localCallContext.method.call(
-          _localUniqueSession,
-          _localCallContext.arguments,
-        ) as _i3.Future<_i4.ChatSession>);
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<_i4.ChatSession>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();
@@ -162,34 +158,32 @@ class _StarguideEndpoint {
     String question,
   ) {
     var _localTestStreamManager = _i1.TestStreamManager<String>();
-    _i1.callStreamFunctionAndHandleExceptions(
-      () async {
-        var _localUniqueSession =
-            (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-          endpoint: 'starguide',
-          method: 'ask',
-        );
-        var _localCallContext =
-            await _endpointDispatch.getMethodStreamCallContext(
-          createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'starguide',
-          methodName: 'ask',
-          arguments: {
-            'chatSession':
-                _i5.jsonDecode(_i2.SerializationManager.encode(chatSession)),
-            'question': question,
-          },
-          requestedInputStreams: [],
-          serializationManager: _serializationManager,
-        );
-        await _localTestStreamManager.callStreamMethod(
-          _localCallContext,
-          _localUniqueSession,
-          {},
-        );
-      },
-      _localTestStreamManager.outputStreamController,
-    );
+    _i1.callStreamFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'starguide',
+            method: 'ask',
+          );
+      var _localCallContext = await _endpointDispatch
+          .getMethodStreamCallContext(
+            createSessionCallback: (_) => _localUniqueSession,
+            endpointPath: 'starguide',
+            methodName: 'ask',
+            arguments: {
+              'chatSession': _i5.jsonDecode(
+                _i2.SerializationManager.encode(chatSession),
+              ),
+              'question': question,
+            },
+            requestedInputStreams: [],
+            serializationManager: _serializationManager,
+          );
+      await _localTestStreamManager.callStreamMethod(
+        _localCallContext,
+        _localUniqueSession,
+        {},
+      );
+    }, _localTestStreamManager.outputStreamController);
     return _localTestStreamManager.outputStreamController.stream;
   }
 
@@ -201,9 +195,9 @@ class _StarguideEndpoint {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-        endpoint: 'starguide',
-        method: 'vote',
-      );
+            endpoint: 'starguide',
+            method: 'vote',
+          );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
@@ -215,10 +209,12 @@ class _StarguideEndpoint {
           }),
           serializationManager: _serializationManager,
         );
-        var _localReturnValue = await (_localCallContext.method.call(
-          _localUniqueSession,
-          _localCallContext.arguments,
-        ) as _i3.Future<void>);
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

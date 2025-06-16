@@ -80,11 +80,11 @@ class _ChatSessionImpl extends ChatSession {
     required String keyToken,
     bool? goodAnswer,
   }) : super._(
-          id: id,
-          userId: userId,
-          keyToken: keyToken,
-          goodAnswer: goodAnswer,
-        );
+         id: id,
+         userId: userId,
+         keyToken: keyToken,
+         goodAnswer: goodAnswer,
+       );
 
   /// Returns a shallow copy of this [ChatSession]
   /// with some or all fields replaced by the given arguments.

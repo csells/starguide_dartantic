@@ -12,10 +12,10 @@ class StarguideEndpoint extends Endpoint {
   ) async {
     // Verify the reCAPTCHA token.
     final score = await verifyRecaptchaToken(
-          session,
-          token: reCaptchaToken,
-          expectedAction: 'create_chat_session',
-        );
+      session,
+      token: reCaptchaToken,
+      expectedAction: 'create_chat_session',
+    );
 
     if (score < 0.5) {
       throw RecaptchaException();
@@ -98,21 +98,18 @@ class StarguideEndpoint extends Endpoint {
     }
 
     // Store the question and the answer.
-    await ChatMessage.db.insert(
-      session,
-      [
-        ChatMessage(
-          chatSessionId: chatSession.id!,
-          message: question,
-          type: ChatMessageType.user,
-        ),
-        ChatMessage(
-          chatSessionId: chatSession.id!,
-          message: answer,
-          type: ChatMessageType.model,
-        ),
-      ],
-    );
+    await ChatMessage.db.insert(session, [
+      ChatMessage(
+        chatSessionId: chatSession.id!,
+        message: question,
+        type: ChatMessageType.user,
+      ),
+      ChatMessage(
+        chatSessionId: chatSession.id!,
+        message: answer,
+        type: ChatMessageType.model,
+      ),
+    ]);
   }
 
   Future<void> vote(

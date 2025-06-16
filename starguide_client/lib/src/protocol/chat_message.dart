@@ -81,11 +81,11 @@ class _ChatMessageImpl extends ChatMessage {
     required String message,
     required _i2.ChatMessageType type,
   }) : super._(
-          id: id,
-          chatSessionId: chatSessionId,
-          message: message,
-          type: type,
-        );
+         id: id,
+         chatSessionId: chatSessionId,
+         message: message,
+         type: type,
+       );
 
   /// Returns a shallow copy of this [ChatMessage]
   /// with some or all fields replaced by the given arguments.

@@ -26,24 +26,13 @@ void main() async {
   // Initialize the highlighter.
   await Highlighter.initialize(['dart', 'yaml', 'sql']);
   var theme = await HighlighterTheme.loadDarkTheme();
-  highlighterDart = Highlighter(
-    language: 'dart',
-    theme: theme,
-  );
-  highlighterYaml = Highlighter(
-    language: 'yaml',
-    theme: theme,
-  );
-  highlighterSql = Highlighter(
-    language: 'sql',
-    theme: theme,
-  );
+  highlighterDart = Highlighter(language: 'dart', theme: theme);
+  highlighterYaml = Highlighter(language: 'yaml', theme: theme);
+  highlighterSql = Highlighter(language: 'sql', theme: theme);
 
   if (kIsWeb) {
     await GRecaptchaV3.hideBadge();
-    await GRecaptchaV3.ready(
-      '6LcWhFMrAAAAAHvRY6kr9oc9B_KPeOT0T2SxFGJE',
-    );
+    await GRecaptchaV3.ready('6LcWhFMrAAAAAHvRY6kr9oc9B_KPeOT0T2SxFGJE');
   }
   runApp(const StarguideApp());
 }
@@ -62,9 +51,7 @@ class StarguideApp extends StatelessWidget {
 }
 
 class StarguideChatPage extends StatefulWidget {
-  const StarguideChatPage({
-    super.key,
-  });
+  const StarguideChatPage({super.key});
 
   @override
   StarguideChatPageState createState() => StarguideChatPageState();
@@ -77,12 +64,8 @@ class StarguideChatPageState extends State<StarguideChatPage> {
   static const _userId = 'user';
   static const _modelId = 'model';
 
-  final _user = const User(
-    id: _userId,
-  );
-  final _model = const User(
-    id: _modelId,
-  );
+  final _user = const User(id: _userId);
+  final _model = const User(id: _modelId);
 
   ChatSession? _chatSession;
   TextMessage? _currentResponse;
@@ -217,9 +200,19 @@ class StarguideChatPageState extends State<StarguideChatPage> {
                   left: 0,
                   child: SizedBox(),
                 ),
-                textMessageBuilder: (context, message, index, {groupStatus, isSentByMe = false}) {
-                  return StarguideTextMessage(message: message, index: index);
-                },
+                textMessageBuilder:
+                    (
+                      context,
+                      message,
+                      index, {
+                      groupStatus,
+                      isSentByMe = false,
+                    }) {
+                      return StarguideTextMessage(
+                        message: message,
+                        index: index,
+                      );
+                    },
                 emptyChatListBuilder: (context) => StarguideEmptyChat(),
               ),
               resolveUser: (id) => Future.value(switch (id) {
@@ -230,11 +223,7 @@ class StarguideChatPageState extends State<StarguideChatPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(
-              left: 16,
-              right: 16,
-              bottom: 16,
-            ),
+            margin: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
             decoration: BoxDecoration(
               color: theme.colorScheme.surface,
               border: Border.all(
@@ -272,8 +261,9 @@ class StarguideChatPageState extends State<StarguideChatPage> {
                         icon: Icon(Icons.thumb_up_outlined),
                       ),
                       TextButton.icon(
-                        onPressed:
-                            _chatSession != null ? _handleDownvote : null,
+                        onPressed: _chatSession != null
+                            ? _handleDownvote
+                            : null,
                         label: Text('Poor Answer'),
                         icon: Icon(Icons.thumb_down_outlined),
                       ),
@@ -290,7 +280,8 @@ class StarguideChatPageState extends State<StarguideChatPage> {
                   textController: _inputTextController,
                   focusNode: _inputFocusNode,
                   onSend: _handleMessageSend,
-                  enabled: _hasInputText &&
+                  enabled:
+                      _hasInputText &&
                       !_isGeneratingResponse &&
                       _numChatRequests < kMaxChatRequests,
                   isGeneratingResponse: _isGeneratingResponse,

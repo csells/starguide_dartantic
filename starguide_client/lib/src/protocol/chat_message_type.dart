@@ -23,7 +23,8 @@ enum ChatMessageType implements _i1.SerializableModel {
         return ChatMessageType.model;
       default:
         throw ArgumentError(
-            'Value "$index" cannot be converted to "ChatMessageType"');
+          'Value "$index" cannot be converted to "ChatMessageType"',
+        );
     }
   }
 

@@ -112,8 +112,9 @@ class StarguideTextMessage extends StatelessWidget {
       final gptResponse = GptResponse(message.text);
 
       content = Column(
-        crossAxisAlignment:
-            isSentByMe ? CrossAxisAlignment.center : CrossAxisAlignment.stretch,
+        crossAxisAlignment: isSentByMe
+            ? CrossAxisAlignment.center
+            : CrossAxisAlignment.stretch,
         children: [
           if (!isSentByMe) const SizedBox(width: double.infinity),
           GptMarkdown(
@@ -122,10 +123,8 @@ class StarguideTextMessage extends StatelessWidget {
                 ? paragraphStyle?.copyWith(fontSize: onlyEmojiFontSize)
                 : paragraphStyle,
             onLinkTab: onLinkTab,
-            codeBuilder: (context, name, codes, closed) => StarguideCodeField(
-              name: name,
-              codes: codes,
-            ),
+            codeBuilder: (context, name, codes, closed) =>
+                StarguideCodeField(name: name, codes: codes),
             highlightBuilder: (context, text, style) {
               return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 2),
@@ -150,10 +149,7 @@ class StarguideTextMessage extends StatelessWidget {
     }
 
     final linkPreviewWidget = linkPreviewPosition != LinkPreviewPosition.none
-        ? context.read<Builders>().linkPreviewBuilder?.call(
-              context,
-              message,
-            )
+        ? context.read<Builders>().linkPreviewBuilder?.call(context, message)
         : null;
 
     return Container(
@@ -173,8 +169,9 @@ class StarguideTextMessage extends StatelessWidget {
                   linkPreviewPosition == LinkPreviewPosition.top)
                 linkPreviewWidget,
               Container(
-                padding:
-                    isSentByMe ? padding : EdgeInsets.symmetric(vertical: 16),
+                padding: isSentByMe
+                    ? padding
+                    : EdgeInsets.symmetric(vertical: 16),
                 child: _buildContentBasedOnPosition(
                   context: context,
                   textContent: content,
@@ -263,8 +260,9 @@ class StarguideTextMessage extends StatelessWidget {
     if (isSentByMe) {
       return timeStyle ??
           theme.typography.labelSmall.copyWith(
-            color:
-                _isOnlyEmoji ? theme.colors.onSurface : theme.colors.onPrimary,
+            color: _isOnlyEmoji
+                ? theme.colors.onSurface
+                : theme.colors.onPrimary,
           );
     }
     return timeStyle ??
@@ -381,10 +379,7 @@ class GptResponseLink {
 class LinkPreviewList extends StatelessWidget {
   final List<GptResponseLink> links;
 
-  const LinkPreviewList({
-    super.key,
-    required this.links,
-  });
+  const LinkPreviewList({super.key, required this.links});
 
   @override
   Widget build(BuildContext context) {
@@ -421,10 +416,7 @@ class LinkPreviewList extends StatelessWidget {
 class LinkPreview extends StatelessWidget {
   final GptResponseLink link;
 
-  const LinkPreview({
-    super.key,
-    required this.link,
-  });
+  const LinkPreview({super.key, required this.link});
 
   @override
   Widget build(BuildContext context) {
@@ -451,8 +443,9 @@ class LinkPreview extends StatelessWidget {
               ),
               Text(
                 domain,
-                style: theme.textTheme.labelSmall
-                    ?.copyWith(color: theme.disabledColor),
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: theme.disabledColor,
+                ),
                 maxLines: 1,
                 overflow: TextOverflow.clip,
                 softWrap: false,
@@ -496,8 +489,8 @@ class StarguideProgressIndicator extends StatelessWidget {
                 Text(
                   'Generating response...',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Theme.of(context).disabledColor,
-                      ),
+                    color: Theme.of(context).disabledColor,
+                  ),
                 ),
               ],
             ),

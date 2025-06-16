@@ -4,12 +4,12 @@ import 'package:starguide_server/src/extensions/chat_message_to_role.dart';
 import 'package:starguide_server/src/generated/protocol.dart';
 
 class GenerativeAi {
-  final String geminiAPIKey;
-  late Agent agent;
+  final String _geminiAPIKey;
+  late Agent _agent;
 
   GenerativeAi()
-      : geminiAPIKey = Serverpod.instance.getPassword('geminiAPIKey')! {
-    agent = Agent.provider(GeminiProvider(apiKey: geminiAPIKey));
+    : _geminiAPIKey = Serverpod.instance.getPassword('geminiAPIKey')! {
+    _agent = _getAgent();
   }
 
   Stream<String> generateConversationalAnswer({
@@ -22,21 +22,19 @@ class GenerativeAi {
 
     // Add conversation history
     for (final chatMessage in conversation) {
-      messages.add(Message(
-        role: chatMessage.type.aiRole == 'user'
-            ? MessageRole.user
-            : MessageRole.model,
-        content: [TextPart(chatMessage.message)],
-      ));
+      messages.add(
+        Message(
+          role: chatMessage.type.aiRole == 'user'
+              ? MessageRole.user
+              : MessageRole.model,
+          content: [TextPart(chatMessage.message)],
+        ),
+      );
     }
 
-    final fullSystemPrompt =
-        systemPrompt + documents.map((e) => _formatDocument(e)).join('\n');
-    final agentWithSystem = Agent.provider(
-      GeminiProvider(apiKey: geminiAPIKey),
-      systemPrompt: fullSystemPrompt,
+    final agentWithSystem = _getAgent(
+      systemPrompt + documents.map((e) => _formatDocument(e)).join('\n'),
     );
-
     final response = agentWithSystem.runStream(question, messages: messages);
     await for (final chunk in response) {
       yield chunk.output;
@@ -44,16 +42,21 @@ class GenerativeAi {
   }
 
   Future<String> generateSimpleAnswer(String question) async {
-    final response = await agent.run(question);
+    final response = await _agent.run(question);
     return response.output;
   }
 
   Future<Vector> generateEmbedding(String document) async {
-    final embedding = await agent.createEmbedding(document);
+    final embedding = await _agent.createEmbedding(document);
     return Vector(embedding.toList());
   }
 
   String _formatDocument(RAGDocument document) {
     return '<doc href="${document.sourceUrl}">\n${document.content}\n</doc>';
   }
+
+  Agent _getAgent([String? systemPrompt]) => Agent.provider(
+    GeminiProvider(apiKey: _geminiAPIKey),
+    systemPrompt: systemPrompt,
+  );
 }

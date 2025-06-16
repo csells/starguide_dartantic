@@ -120,11 +120,11 @@ class _ChatSessionImpl extends ChatSession {
     required String keyToken,
     bool? goodAnswer,
   }) : super._(
-          id: id,
-          userId: userId,
-          keyToken: keyToken,
-          goodAnswer: goodAnswer,
-        );
+         id: id,
+         userId: userId,
+         keyToken: keyToken,
+         goodAnswer: goodAnswer,
+       );
 
   /// Returns a shallow copy of this [ChatSession]
   /// with some or all fields replaced by the given arguments.
@@ -147,18 +147,9 @@ class _ChatSessionImpl extends ChatSession {
 
 class ChatSessionTable extends _i1.Table<int?> {
   ChatSessionTable({super.tableRelation}) : super(tableName: 'chat_session') {
-    userId = _i1.ColumnInt(
-      'userId',
-      this,
-    );
-    keyToken = _i1.ColumnString(
-      'keyToken',
-      this,
-    );
-    goodAnswer = _i1.ColumnBool(
-      'goodAnswer',
-      this,
-    );
+    userId = _i1.ColumnInt('userId', this);
+    keyToken = _i1.ColumnString('keyToken', this);
+    goodAnswer = _i1.ColumnBool('goodAnswer', this);
   }
 
   late final _i1.ColumnInt userId;
@@ -168,12 +159,7 @@ class ChatSessionTable extends _i1.Table<int?> {
   late final _i1.ColumnBool goodAnswer;
 
   @override
-  List<_i1.Column> get columns => [
-        id,
-        userId,
-        keyToken,
-        goodAnswer,
-      ];
+  List<_i1.Column> get columns => [id, userId, keyToken, goodAnswer];
 }
 
 class ChatSessionInclude extends _i1.IncludeObject {
@@ -294,10 +280,7 @@ class ChatSessionRepository {
     int id, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.findById<ChatSession>(
-      id,
-      transaction: transaction,
-    );
+    return session.db.findById<ChatSession>(id, transaction: transaction);
   }
 
   /// Inserts all [ChatSession]s in the list and returns the inserted rows.
@@ -311,10 +294,7 @@ class ChatSessionRepository {
     List<ChatSession> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.insert<ChatSession>(
-      rows,
-      transaction: transaction,
-    );
+    return session.db.insert<ChatSession>(rows, transaction: transaction);
   }
 
   /// Inserts a single [ChatSession] and returns the inserted row.
@@ -325,10 +305,7 @@ class ChatSessionRepository {
     ChatSession row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.insertRow<ChatSession>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.insertRow<ChatSession>(row, transaction: transaction);
   }
 
   /// Updates all [ChatSession]s in the list and returns the updated rows. If
@@ -373,10 +350,7 @@ class ChatSessionRepository {
     List<ChatSession> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.delete<ChatSession>(
-      rows,
-      transaction: transaction,
-    );
+    return session.db.delete<ChatSession>(rows, transaction: transaction);
   }
 
   /// Deletes a single [ChatSession].
@@ -385,10 +359,7 @@ class ChatSessionRepository {
     ChatSession row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<ChatSession>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<ChatSession>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.

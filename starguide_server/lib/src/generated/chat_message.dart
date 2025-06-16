@@ -121,11 +121,11 @@ class _ChatMessageImpl extends ChatMessage {
     required String message,
     required _i2.ChatMessageType type,
   }) : super._(
-          id: id,
-          chatSessionId: chatSessionId,
-          message: message,
-          type: type,
-        );
+         id: id,
+         chatSessionId: chatSessionId,
+         message: message,
+         type: type,
+       );
 
   /// Returns a shallow copy of this [ChatMessage]
   /// with some or all fields replaced by the given arguments.
@@ -148,19 +148,9 @@ class _ChatMessageImpl extends ChatMessage {
 
 class ChatMessageTable extends _i1.Table<int?> {
   ChatMessageTable({super.tableRelation}) : super(tableName: 'chat_message') {
-    chatSessionId = _i1.ColumnInt(
-      'chatSessionId',
-      this,
-    );
-    message = _i1.ColumnString(
-      'message',
-      this,
-    );
-    type = _i1.ColumnEnum(
-      'type',
-      this,
-      _i1.EnumSerialization.byIndex,
-    );
+    chatSessionId = _i1.ColumnInt('chatSessionId', this);
+    message = _i1.ColumnString('message', this);
+    type = _i1.ColumnEnum('type', this, _i1.EnumSerialization.byIndex);
   }
 
   late final _i1.ColumnInt chatSessionId;
@@ -170,12 +160,7 @@ class ChatMessageTable extends _i1.Table<int?> {
   late final _i1.ColumnEnum<_i2.ChatMessageType> type;
 
   @override
-  List<_i1.Column> get columns => [
-        id,
-        chatSessionId,
-        message,
-        type,
-      ];
+  List<_i1.Column> get columns => [id, chatSessionId, message, type];
 }
 
 class ChatMessageInclude extends _i1.IncludeObject {
@@ -296,10 +281,7 @@ class ChatMessageRepository {
     int id, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.findById<ChatMessage>(
-      id,
-      transaction: transaction,
-    );
+    return session.db.findById<ChatMessage>(id, transaction: transaction);
   }
 
   /// Inserts all [ChatMessage]s in the list and returns the inserted rows.
@@ -313,10 +295,7 @@ class ChatMessageRepository {
     List<ChatMessage> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.insert<ChatMessage>(
-      rows,
-      transaction: transaction,
-    );
+    return session.db.insert<ChatMessage>(rows, transaction: transaction);
   }
 
   /// Inserts a single [ChatMessage] and returns the inserted row.
@@ -327,10 +306,7 @@ class ChatMessageRepository {
     ChatMessage row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.insertRow<ChatMessage>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.insertRow<ChatMessage>(row, transaction: transaction);
   }
 
   /// Updates all [ChatMessage]s in the list and returns the updated rows. If
@@ -375,10 +351,7 @@ class ChatMessageRepository {
     List<ChatMessage> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.delete<ChatMessage>(
-      rows,
-      transaction: transaction,
-    );
+    return session.db.delete<ChatMessage>(rows, transaction: transaction);
   }
 
   /// Deletes a single [ChatMessage].
@@ -387,10 +360,7 @@ class ChatMessageRepository {
     ChatMessage row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<ChatMessage>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<ChatMessage>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.

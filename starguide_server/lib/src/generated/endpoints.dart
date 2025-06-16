@@ -18,11 +18,7 @@ class Endpoints extends _i1.EndpointDispatch {
   void initializeEndpoints(_i1.Server server) {
     var endpoints = <String, _i1.Endpoint>{
       'starguide': _i2.StarguideEndpoint()
-        ..initialize(
-          server,
-          'starguide',
-          null,
-        )
+        ..initialize(server, 'starguide', null),
     };
     connectors['starguide'] = _i1.EndpointConnector(
       name: 'starguide',
@@ -35,17 +31,11 @@ class Endpoints extends _i1.EndpointDispatch {
               name: 'reCaptchaToken',
               type: _i1.getType<String>(),
               nullable: false,
-            )
+            ),
           },
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
+          call: (_i1.Session session, Map<String, dynamic> params) async =>
               (endpoints['starguide'] as _i2.StarguideEndpoint)
-                  .createChatSession(
-            session,
-            params['reCaptchaToken'],
-          ),
+                  .createChatSession(session, params['reCaptchaToken']),
         ),
         'vote': _i1.MethodConnector(
           name: 'vote',
@@ -61,15 +51,12 @@ class Endpoints extends _i1.EndpointDispatch {
               nullable: false,
             ),
           },
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
+          call: (_i1.Session session, Map<String, dynamic> params) async =>
               (endpoints['starguide'] as _i2.StarguideEndpoint).vote(
-            session,
-            params['chatSession'],
-            params['goodAnswer'],
-          ),
+                session,
+                params['chatSession'],
+                params['goodAnswer'],
+              ),
         ),
         'ask': _i1.MethodStreamConnector(
           name: 'ask',
@@ -87,16 +74,16 @@ class Endpoints extends _i1.EndpointDispatch {
           },
           streamParams: {},
           returnType: _i1.MethodStreamReturnType.streamType,
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-            Map<String, Stream> streamParams,
-          ) =>
-              (endpoints['starguide'] as _i2.StarguideEndpoint).ask(
-            session,
-            params['chatSession'],
-            params['question'],
-          ),
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+                Map<String, Stream> streamParams,
+              ) => (endpoints['starguide'] as _i2.StarguideEndpoint).ask(
+                session,
+                params['chatSession'],
+                params['question'],
+              ),
         ),
       },
     );

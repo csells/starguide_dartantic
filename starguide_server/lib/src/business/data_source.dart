@@ -5,11 +5,7 @@ abstract class DataSource {
   Stream<RawRAGDocuement> fetch(Session session, DataFetcher fetcher);
 }
 
-enum DataSourceType {
-  html,
-  markdown,
-  text,
-}
+enum DataSourceType { html, markdown, text }
 
 class RawRAGDocuement {
   final Uri sourceUrl;

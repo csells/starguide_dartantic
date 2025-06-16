@@ -28,32 +28,19 @@ class EndpointStarguide extends _i1.EndpointRef {
         {'reCaptchaToken': reCaptchaToken},
       );
 
-  _i2.Stream<String> ask(
-    _i3.ChatSession chatSession,
-    String question,
-  ) =>
+  _i2.Stream<String> ask(_i3.ChatSession chatSession, String question) =>
       caller.callStreamingServerEndpoint<_i2.Stream<String>, String>(
         'starguide',
         'ask',
-        {
-          'chatSession': chatSession,
-          'question': question,
-        },
+        {'chatSession': chatSession, 'question': question},
         {},
       );
 
-  _i2.Future<void> vote(
-    _i3.ChatSession chatSession,
-    bool goodAnswer,
-  ) =>
-      caller.callServerEndpoint<void>(
-        'starguide',
-        'vote',
-        {
-          'chatSession': chatSession,
-          'goodAnswer': goodAnswer,
-        },
-      );
+  _i2.Future<void> vote(_i3.ChatSession chatSession, bool goodAnswer) =>
+      caller.callServerEndpoint<void>('starguide', 'vote', {
+        'chatSession': chatSession,
+        'goodAnswer': goodAnswer,
+      });
 }
 
 class Client extends _i1.ServerpodClientShared {
@@ -63,33 +50,30 @@ class Client extends _i1.ServerpodClientShared {
     _i1.AuthenticationKeyManager? authenticationKeyManager,
     Duration? streamingConnectionTimeout,
     Duration? connectionTimeout,
-    Function(
-      _i1.MethodCallContext,
-      Object,
-      StackTrace,
-    )? onFailedCall,
+    Function(_i1.MethodCallContext, Object, StackTrace)? onFailedCall,
     Function(_i1.MethodCallContext)? onSucceededCall,
     bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
-          host,
-          _i4.Protocol(),
-          securityContext: securityContext,
-          authenticationKeyManager: authenticationKeyManager,
-          streamingConnectionTimeout: streamingConnectionTimeout,
-          connectionTimeout: connectionTimeout,
-          onFailedCall: onFailedCall,
-          onSucceededCall: onSucceededCall,
-          disconnectStreamsOnLostInternetConnection:
-              disconnectStreamsOnLostInternetConnection,
-        ) {
+         host,
+         _i4.Protocol(),
+         securityContext: securityContext,
+         authenticationKeyManager: authenticationKeyManager,
+         streamingConnectionTimeout: streamingConnectionTimeout,
+         connectionTimeout: connectionTimeout,
+         onFailedCall: onFailedCall,
+         onSucceededCall: onSucceededCall,
+         disconnectStreamsOnLostInternetConnection:
+             disconnectStreamsOnLostInternetConnection,
+       ) {
     starguide = EndpointStarguide(this);
   }
 
   late final EndpointStarguide starguide;
 
   @override
-  Map<String, _i1.EndpointRef> get endpointRefLookup =>
-      {'starguide': starguide};
+  Map<String, _i1.EndpointRef> get endpointRefLookup => {
+    'starguide': starguide,
+  };
 
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup => {};

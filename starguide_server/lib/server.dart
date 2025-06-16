@@ -8,11 +8,7 @@ import 'src/generated/endpoints.dart';
 
 void run(List<String> args) async {
   // Initialize Serverpod and connect it with your generated code.
-  final pod = Serverpod(
-    args,
-    Protocol(),
-    Endpoints(),
-  );
+  final pod = Serverpod(args, Protocol(), Endpoints());
 
   pod.registerFutureCall(FetchDataFutureCall(), 'fetchDataFutureCall');
 
@@ -29,9 +25,5 @@ void run(List<String> args) async {
   await pod.start();
 
   // Start fetching data.
-  pod.futureCallWithDelay(
-    'fetchDataFutureCall',
-    null,
-    const Duration(),
-  );
+  pod.futureCallWithDelay('fetchDataFutureCall', null, const Duration());
 }

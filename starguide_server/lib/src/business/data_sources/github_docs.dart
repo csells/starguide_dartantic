@@ -57,10 +57,7 @@ class GithubDocsDataSource implements DataSource {
       final fileName = file['name'];
       final cleanedFileName = _cleanFileName(fileName);
       final url = referenceUrl.replace(
-        pathSegments: [
-          ...referenceUrl.pathSegments,
-          cleanedFileName,
-        ],
+        pathSegments: [...referenceUrl.pathSegments, cleanedFileName],
       );
 
       if (file['type'] == 'dir') {
@@ -152,8 +149,9 @@ class GithubDocsDataSource implements DataSource {
 String _cleanFileName(String fileName) {
   final prefixRegex = RegExp(r'^\d+-');
   final suffixRegex = RegExp(r'\.(md|mdx)$');
-  final cleanedName =
-      fileName.replaceFirst(prefixRegex, '').replaceFirst(suffixRegex, '');
+  final cleanedName = fileName
+      .replaceFirst(prefixRegex, '')
+      .replaceFirst(suffixRegex, '');
 
   if (cleanedName == 'index') return '';
   return cleanedName;

@@ -34,10 +34,12 @@ abstract class RAGDocument
   factory RAGDocument.fromJson(Map<String, dynamic> jsonSerialization) {
     return RAGDocument(
       id: jsonSerialization['id'] as int?,
-      embedding:
-          _i1.VectorJsonExtension.fromJson(jsonSerialization['embedding']),
-      fetchTime:
-          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['fetchTime']),
+      embedding: _i1.VectorJsonExtension.fromJson(
+        jsonSerialization['embedding'],
+      ),
+      fetchTime: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['fetchTime'],
+      ),
       sourceUrl: _i1.UriJsonExtension.fromJson(jsonSerialization['sourceUrl']),
       content: jsonSerialization['content'] as String,
       summary: jsonSerialization['summary'] as String,
@@ -140,13 +142,13 @@ class _RAGDocumentImpl extends RAGDocument {
     required String content,
     required String summary,
   }) : super._(
-          id: id,
-          embedding: embedding,
-          fetchTime: fetchTime,
-          sourceUrl: sourceUrl,
-          content: content,
-          summary: summary,
-        );
+         id: id,
+         embedding: embedding,
+         fetchTime: fetchTime,
+         sourceUrl: sourceUrl,
+         content: content,
+         summary: summary,
+       );
 
   /// Returns a shallow copy of this [RAGDocument]
   /// with some or all fields replaced by the given arguments.
@@ -173,27 +175,11 @@ class _RAGDocumentImpl extends RAGDocument {
 
 class RAGDocumentTable extends _i1.Table<int?> {
   RAGDocumentTable({super.tableRelation}) : super(tableName: 'rag_document') {
-    embedding = _i1.ColumnVector(
-      'embedding',
-      this,
-      dimension: 1536,
-    );
-    fetchTime = _i1.ColumnDateTime(
-      'fetchTime',
-      this,
-    );
-    sourceUrl = _i1.ColumnUri(
-      'sourceUrl',
-      this,
-    );
-    content = _i1.ColumnString(
-      'content',
-      this,
-    );
-    summary = _i1.ColumnString(
-      'summary',
-      this,
-    );
+    embedding = _i1.ColumnVector('embedding', this, dimension: 1536);
+    fetchTime = _i1.ColumnDateTime('fetchTime', this);
+    sourceUrl = _i1.ColumnUri('sourceUrl', this);
+    content = _i1.ColumnString('content', this);
+    summary = _i1.ColumnString('summary', this);
   }
 
   late final _i1.ColumnVector embedding;
@@ -208,13 +194,13 @@ class RAGDocumentTable extends _i1.Table<int?> {
 
   @override
   List<_i1.Column> get columns => [
-        id,
-        embedding,
-        fetchTime,
-        sourceUrl,
-        content,
-        summary,
-      ];
+    id,
+    embedding,
+    fetchTime,
+    sourceUrl,
+    content,
+    summary,
+  ];
 }
 
 class RAGDocumentInclude extends _i1.IncludeObject {
@@ -335,10 +321,7 @@ class RAGDocumentRepository {
     int id, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.findById<RAGDocument>(
-      id,
-      transaction: transaction,
-    );
+    return session.db.findById<RAGDocument>(id, transaction: transaction);
   }
 
   /// Inserts all [RAGDocument]s in the list and returns the inserted rows.
@@ -352,10 +335,7 @@ class RAGDocumentRepository {
     List<RAGDocument> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.insert<RAGDocument>(
-      rows,
-      transaction: transaction,
-    );
+    return session.db.insert<RAGDocument>(rows, transaction: transaction);
   }
 
   /// Inserts a single [RAGDocument] and returns the inserted row.
@@ -366,10 +346,7 @@ class RAGDocumentRepository {
     RAGDocument row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.insertRow<RAGDocument>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.insertRow<RAGDocument>(row, transaction: transaction);
   }
 
   /// Updates all [RAGDocument]s in the list and returns the updated rows. If
@@ -414,10 +391,7 @@ class RAGDocumentRepository {
     List<RAGDocument> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.delete<RAGDocument>(
-      rows,
-      transaction: transaction,
-    );
+    return session.db.delete<RAGDocument>(rows, transaction: transaction);
   }
 
   /// Deletes a single [RAGDocument].
@@ -426,10 +400,7 @@ class RAGDocumentRepository {
     RAGDocument row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<RAGDocument>(
-      row,
-      transaction: transaction,
-    );
+    return session.db.deleteRow<RAGDocument>(row, transaction: transaction);
   }
 
   /// Deletes all rows matching the [where] expression.

@@ -33,10 +33,12 @@ abstract class RAGDocument implements _i1.SerializableModel {
   factory RAGDocument.fromJson(Map<String, dynamic> jsonSerialization) {
     return RAGDocument(
       id: jsonSerialization['id'] as int?,
-      embedding:
-          _i1.VectorJsonExtension.fromJson(jsonSerialization['embedding']),
-      fetchTime:
-          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['fetchTime']),
+      embedding: _i1.VectorJsonExtension.fromJson(
+        jsonSerialization['embedding'],
+      ),
+      fetchTime: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['fetchTime'],
+      ),
       sourceUrl: _i1.UriJsonExtension.fromJson(jsonSerialization['sourceUrl']),
       content: jsonSerialization['content'] as String,
       summary: jsonSerialization['summary'] as String,
@@ -98,13 +100,13 @@ class _RAGDocumentImpl extends RAGDocument {
     required String content,
     required String summary,
   }) : super._(
-          id: id,
-          embedding: embedding,
-          fetchTime: fetchTime,
-          sourceUrl: sourceUrl,
-          content: content,
-          summary: summary,
-        );
+         id: id,
+         embedding: embedding,
+         fetchTime: fetchTime,
+         sourceUrl: sourceUrl,
+         content: content,
+         summary: summary,
+       );
 
   /// Returns a shallow copy of this [RAGDocument]
   /// with some or all fields replaced by the given arguments.

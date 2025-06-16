@@ -72,10 +72,7 @@ class DataFetcher {
       await RAGDocument.db.insertRow(session, ragDocument);
     } else {
       ragDocument.id = existingDocument.id;
-      await RAGDocument.db.updateRow(
-        session,
-        ragDocument,
-      );
+      await RAGDocument.db.updateRow(session, ragDocument);
     }
   }
 

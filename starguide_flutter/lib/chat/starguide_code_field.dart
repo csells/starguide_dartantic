@@ -15,8 +15,11 @@ import 'package:starguide_flutter/main.dart';
 /// - Visual feedback when code is copied
 /// - Themed colors that adapt to light/dark mode
 class StarguideCodeField extends StatefulWidget {
-  const StarguideCodeField(
-      {super.key, required this.name, required this.codes});
+  const StarguideCodeField({
+    super.key,
+    required this.name,
+    required this.codes,
+  });
   final String name;
   final String codes;
 
@@ -43,9 +46,7 @@ class _StarguideCodeFieldState extends State<StarguideCodeField> {
         formattedCodes = TextSpan(text: widget.codes);
     }
     formattedCodes = TextSpan(
-      children: [
-        formattedCodes,
-      ],
+      children: [formattedCodes],
       style: const TextStyle(
         fontFamily: 'JetBrainsMono',
         color: Colors.white,
@@ -116,9 +117,7 @@ class _StarguideCodeFieldState extends State<StarguideCodeField> {
               right: 16,
               bottom: 16,
             ),
-            child: RichText(
-              text: formattedCodes,
-            ),
+            child: RichText(text: formattedCodes),
           ),
         ],
       ),

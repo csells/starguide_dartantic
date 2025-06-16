@@ -49,14 +49,15 @@ class _StarguideChatInputState extends State<StarguideChatInput> {
                   focusNode: widget.focusNode,
                   autofocus: true,
                   enabled: widget.numChatRequests < kMaxChatRequests,
-                  buildCounter: (
-                    context, {
-                    required currentLength,
-                    required isFocused,
-                    required maxLength,
-                  }) {
-                    return const SizedBox();
-                  },
+                  buildCounter:
+                      (
+                        context, {
+                        required currentLength,
+                        required isFocused,
+                        required maxLength,
+                      }) {
+                        return const SizedBox();
+                      },
                   maxLength: kMaxChatRequestLength,
                   maxLines: 1,
                   decoration: InputDecoration.collapsed(
@@ -76,9 +77,7 @@ class _StarguideChatInputState extends State<StarguideChatInput> {
                   padding: const EdgeInsets.all(10),
                   width: 40,
                   height: 40,
-                  child: CircularProgressIndicator(
-                    color: theme.disabledColor,
-                  ),
+                  child: CircularProgressIndicator(color: theme.disabledColor),
                 )
               else
                 IconButton(
