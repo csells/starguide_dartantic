@@ -48,7 +48,7 @@ production:
 Then you can start the Serverpod server, which runs locally but connects to the
 containerized databases.
 
-    dart bin/main.dart
+    dart bin/main.dart --apply-migrations
 
 When you are finished, you can shut down Serverpod with `Ctrl-C`, then stop
 Postgres and Redis.

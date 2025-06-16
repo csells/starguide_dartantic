@@ -12,10 +12,10 @@ class StarguideEndpoint extends Endpoint {
   ) async {
     // Verify the reCAPTCHA token.
     final score = await verifyRecaptchaToken(
-      session,
-      token: reCaptchaToken,
-      expectedAction: 'create_chat_session',
-    );
+          session,
+          token: reCaptchaToken,
+          expectedAction: 'create_chat_session',
+        );
 
     if (score < 0.5) {
       throw RecaptchaException();

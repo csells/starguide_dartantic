@@ -97,7 +97,7 @@ class StarguideTextMessage extends StatelessWidget {
 
     final timeAndStatus = showTime || (isSentByMe && showStatus)
         ? TimeAndStatus(
-            time: message.time,
+            time: message.createdAt,
             status: message.status,
             showTime: showTime,
             showStatus: isSentByMe && showStatus,

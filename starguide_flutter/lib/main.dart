@@ -217,7 +217,7 @@ class StarguideChatPageState extends State<StarguideChatPage> {
                   left: 0,
                   child: SizedBox(),
                 ),
-                textMessageBuilder: (context, message, index) {
+                textMessageBuilder: (context, message, index, {groupStatus, isSentByMe = false}) {
                   return StarguideTextMessage(message: message, index: index);
                 },
                 emptyChatListBuilder: (context) => StarguideEmptyChat(),
