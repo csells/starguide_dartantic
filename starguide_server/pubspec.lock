@@ -100,35 +100,18 @@ packages:
   dartantic_ai:
     dependency: "direct main"
     description:
-      name: dartantic_ai
-      sha256: ce7bc1158fd21b19217b739cc7d6d1d99139753993f95dd69b12c551b2d835be
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.0"
+      path: "../../../dartantic_ai"
+      relative: true
+    source: path
+    version: "0.9.7"
   dotprompt_dart:
     dependency: transitive
     description:
       name: dotprompt_dart
-      sha256: "3fcb28f65e5248e4fe8ef057c92d496562ece69df1d5016284a2e3d3ef01fb50"
+      sha256: "662b6d2acdaf009bc3d0cf70aa1a099541bf5b1fd90085a3eab47a4bda19b39b"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
-  fetch_api:
-    dependency: transitive
-    description:
-      name: fetch_api
-      sha256: "24cbd5616f3d4008c335c197bb90bfa0eb43b9e55c6de5c60d1f805092636034"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.1"
-  fetch_client:
-    dependency: transitive
-    description:
-      name: fetch_client
-      sha256: "375253f4efe64303c793fb17fe90771c591320b2ae11fb29cb5b406cc8533c00"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.4"
+    version: "0.3.0"
   file:
     dependency: transitive
     description:
@@ -269,10 +252,10 @@ packages:
     dependency: transitive
     description:
       name: mcp_dart
-      sha256: "5a8b334da76fe7b8fa5b10b57a5344b3bac7ba8e6316379ef442708e0877eac1"
+      sha256: "4bc05574bc8bda0ae779e177ab5639f580b37059b5cb1248288b7a79979dd5e6"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.1"
+    version: "0.5.3"
   meta:
     dependency: transitive
     description:
@@ -309,10 +292,10 @@ packages:
     dependency: transitive
     description:
       name: openai_dart
-      sha256: "1cc5ed0915fa7572b943de01cfa7a3e5cfe1e6a7f4d0d9a9374d046518e84575"
+      sha256: "995d2b74679e8129b4fc013efcb0ae2cacc46f6058b8b07d279a654be05d6d7a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.5"
+    version: "0.5.2"
   package_config:
     dependency: transitive
     description:

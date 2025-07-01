@@ -116,8 +116,8 @@
           "name": "embedding",
           "columnType": 10,
           "isNullable": false,
-          "dartType": "Vector(768)",
-          "vectorDimension": 768
+          "dartType": "Vector(1536)",
+          "vectorDimension": 1536
         },
         {
           "name": "fetchTime",

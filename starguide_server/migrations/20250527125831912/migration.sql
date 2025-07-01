@@ -23,7 +23,7 @@ DROP TABLE "rag_document" CASCADE;
 --
 CREATE TABLE "rag_document" (
     "id" bigserial PRIMARY KEY,
-    "embedding" vector(768) NOT NULL,
+    "embedding" vector(1536) NOT NULL,
     "fetchTime" timestamp without time zone NOT NULL,
     "sourceUrl" text NOT NULL,
     "content" text NOT NULL,
